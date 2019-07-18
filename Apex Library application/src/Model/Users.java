@@ -13,17 +13,18 @@ public abstract class Users {
     
     private int id;
     private String password;
-    private Boolean isAdmin;
+    private boolean isAdmin;
     private String firstName;
     private String lastName;
     
-    public Users (int tempId, String tempPassword, String tempFirstName, String tempLastName){
+    public Users (int tempId, boolean tempIsAdmin, String tempPassword, String tempFirstName, String tempLastName){
     
         id = tempId;
         password = tempPassword;
-        
+        isAdmin = tempIsAdmin;
         firstName = tempFirstName;
         lastName = tempLastName;
+        
     }   
 
     public int getId() {
@@ -56,6 +57,14 @@ public abstract class Users {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(Boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
     
     
