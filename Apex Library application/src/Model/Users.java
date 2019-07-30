@@ -5,11 +5,13 @@
  */
 package Model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author rcarter4
  */
-public abstract class Users {
+public class Users implements Serializable{
     
     private int id;
     private String password;

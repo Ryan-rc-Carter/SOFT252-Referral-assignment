@@ -36,9 +36,7 @@ public class LoginWindow extends javax.swing.JFrame {
 
         jButton1.setText("jButton1");
 
-        PasswordField.setText("jPasswordField1");
-
-        UserNameField.setText("jTextField1");
+        UserNameField.setText("Username");
 
         jLabel1.setText("Apex Library Resource Management");
 

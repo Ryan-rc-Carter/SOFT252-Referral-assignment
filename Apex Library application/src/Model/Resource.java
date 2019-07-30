@@ -5,11 +5,13 @@
  */
 package Model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Ryan
  */
-public abstract  class Resource {
+public class Resource implements Serializable{
     
     private String resourceName;
     private int typeInt;

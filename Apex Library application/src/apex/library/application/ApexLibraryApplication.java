@@ -5,6 +5,9 @@
  */
 package apex.library.application;
 
+import Model.Serialiser;
+import Model.Book;
+
 /**
  *
  * @author rcarter4
@@ -16,6 +19,11 @@ public class ApexLibraryApplication {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+         Book b = new Book("test", 1, "book", false);
+        System.out.println(b.getTypeName());
+        Serialiser serialiser = new Serialiser ("test.ser");
+        serialiser.writeObject(b);
+        
     }
     
 }
