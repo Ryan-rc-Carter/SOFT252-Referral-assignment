@@ -11,8 +11,8 @@ package Model;
  */
 public class Dvd extends Resource{
     
-    public Dvd(String tempResourceName, int tempTypeInt, String tempTypeName, Boolean tempOverdue){
-        super(tempResourceName, tempTypeInt, tempTypeName, tempOverdue);
+    public Dvd(String tempResourceName, int tempTypeInt, int tempDeweyClass, String tempTypeName, Boolean tempOverdue){
+        super(tempResourceName, tempTypeInt, tempDeweyClass, tempTypeName, tempOverdue);
     
     }
 }

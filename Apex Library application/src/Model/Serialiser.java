@@ -19,16 +19,16 @@ import java.io.Serializable;
 public class Serialiser {
     private String name;
     
-    public Serialiser(String filename){
-        name = filename;
+    public Serialiser(String fileName){
+        name = fileName;
     }
     
     /**
      *
      * @param filename
      */
-    public void setName(String filename){
-        name = filename;
+    public void setName(String fileName){
+        name = fileName;
     }
     
     /**
@@ -47,16 +47,27 @@ public class Serialiser {
         Serializable loadedObject = null;
         try {
          FileInputStream fileIn = new FileInputStream(name);
+         
          ObjectInputStream in = new ObjectInputStream(fileIn);
+         
          loadedObject = (Serializable) in.readObject();
+         
          in.close();
+         
          fileIn.close();
+         
          System.out.println("Data loaded from: "+ name);
+         
         } catch (IOException i) {
-            System.out.println("File not found.");
+            
+            System.out.println("File not found");
+            
             i.printStackTrace();
+            
         } catch (ClassNotFoundException c) {
+            
             System.out.println("Class not found");
+            
             c.printStackTrace();
         }
         return loadedObject;

@@ -13,13 +13,13 @@ import java.io.Serializable;
  */
 public class Users implements Serializable{
     
-    private int id;
+    private String id;
     private String password;
     private boolean isAdmin;
     private String firstName;
     private String lastName;
     
-    public Users (int tempId, boolean tempIsAdmin, String tempPassword, String tempFirstName, String tempLastName){
+    public Users (String tempId, String tempPassword, boolean tempIsAdmin, String tempFirstName, String tempLastName){
     
         id = tempId;
         password = tempPassword;
@@ -29,7 +29,7 @@ public class Users implements Serializable{
         
     }   
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -45,7 +45,7 @@ public class Users implements Serializable{
         return lastName;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

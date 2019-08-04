@@ -12,8 +12,8 @@ package Model;
 
 public class Admin extends Users{
     
-    public Admin(int tempId,boolean tempIsAdmin, String tempPassword, String tempFirstName, String tempLastName) {
-        super(tempId, tempIsAdmin, tempPassword, tempFirstName, tempLastName);
+    public Admin(String tempId,String tempPassword, boolean tempIsAdmin, String tempFirstName, String tempLastName) {
+        super(tempId, tempPassword, tempIsAdmin, tempFirstName, tempLastName);
         
         
     }

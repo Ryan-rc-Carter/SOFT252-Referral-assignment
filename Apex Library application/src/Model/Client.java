@@ -11,8 +11,8 @@ package Model;
  */
 public class Client extends Users{
     
-    public Client(int tempId,boolean tempIsAdmin, String tempPassword, String tempFirstName, String tempLastName) {
-        super(tempId, tempIsAdmin, tempPassword, tempFirstName, tempLastName);
+    public Client(String tempId,String tempPassword, boolean tempIsAdmin, String tempFirstName, String tempLastName) {
+        super(tempId, tempPassword, tempIsAdmin, tempFirstName, tempLastName);
     }
     
 }

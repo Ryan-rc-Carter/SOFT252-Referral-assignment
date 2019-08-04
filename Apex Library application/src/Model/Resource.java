@@ -15,14 +15,16 @@ public class Resource implements Serializable{
     
     private String resourceName;
     private int typeInt;
+    private int deweyClass;
     private String typeName;
     private Boolean overdue;
     
     
-    public Resource (String tempResourceName, int tempTypeInt, String tempTypeName, Boolean tempOverdue){
+    public Resource (String tempResourceName, int tempTypeInt, int tempDeweyClass, String tempTypeName, Boolean tempOverdue){
     
         resourceName = tempResourceName;
         typeInt = tempTypeInt;
+        deweyClass = tempDeweyClass;
         typeName = tempTypeName;
         overdue = tempOverdue;       
         
@@ -44,6 +46,17 @@ public class Resource implements Serializable{
     public void setTypeInt(int typeInt) {
         this.typeInt = typeInt;
     }
+
+    public int getDeweyClass() {
+        return deweyClass;
+    }
+
+    public void setDeweyClass(int deweyClass) {
+        this.deweyClass = deweyClass;
+    }
+    
+    
+    
 
     public String getTypeName() {
         return typeName;

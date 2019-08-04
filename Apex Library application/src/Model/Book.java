@@ -11,7 +11,7 @@ package Model;
  */
 public class Book extends Resource{
     
-    public Book(String tempResourceName, int tempTypeInt, String tempTypeName, Boolean tempOverdue){
-        super(tempResourceName, tempTypeInt, tempTypeName, tempOverdue);
+    public Book(String tempResourceName, int tempTypeInt, int tempDeweyClass, String tempTypeName, Boolean tempOverdue){
+        super(tempResourceName, tempTypeInt, tempDeweyClass, tempTypeName, tempOverdue);
     }
 }
