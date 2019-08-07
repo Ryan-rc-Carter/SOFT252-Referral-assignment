@@ -11,8 +11,8 @@ package Model;
  */
 public class Magazine extends Resource{
     
-    public Magazine(String tempResourceName, int tempTypeInt, int tempDeweyClass, String tempTypeName, Boolean tempOverdue){
-        super(tempResourceName, tempTypeInt, tempDeweyClass, tempTypeName, tempOverdue);
+    public Magazine(String tempResourceName, int tempID, int tempDeweyClass, String tempTypeName, String tempOverdue){
+        super(tempResourceName, tempID, tempDeweyClass, tempTypeName, tempOverdue);
     
     }
 }

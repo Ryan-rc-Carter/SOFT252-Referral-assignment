@@ -14,15 +14,15 @@ import java.io.Serializable;
 public class Resource {
     
     private String resourceName;
-    private int typeInt;
+    private int id;
     private int deweyClass;
     private String typeName;
-    private Boolean overdue;    
+    private String overdue;    
 
-    public Resource (String tempResourceName, int tempTypeInt, int tempDeweyClass, String tempTypeName, Boolean tempOverdue){
+    public Resource (String tempResourceName, int tempId, int tempDeweyClass, String tempTypeName, String tempOverdue){
     
         resourceName = tempResourceName;
-        typeInt = tempTypeInt;
+        id = tempId;
         deweyClass = tempDeweyClass;
         typeName = tempTypeName;
         overdue = tempOverdue;       
@@ -36,12 +36,12 @@ public class Resource {
         this.resourceName = resourceName;
     }
 
-    public int getTypeInt() {
-        return typeInt;
+    public int getID() {
+        return id;
     }
 
-    public void setTypeInt(int typeInt) {
-        this.typeInt = typeInt;
+    public void setID(int id) {
+        this.id = id;
     }
 
     public int getDeweyClass() {
@@ -60,11 +60,11 @@ public class Resource {
         this.typeName = typeName;
     }
 
-    public Boolean getOverdue() {
+    public String getOverdue() {
         return overdue;
     }
 
-    public void setOverdue(Boolean overdue) {
+    public void setOverdue(String overdue) {
         this.overdue = overdue;
     }
     
