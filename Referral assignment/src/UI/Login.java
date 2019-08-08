@@ -26,6 +26,8 @@ public class Login extends javax.swing.JFrame {
     
     public ArrayList<Resource> resourceList;
     
+    
+    
     DefaultListModel listModel = new DefaultListModel();
     
     public Login() {
@@ -35,13 +37,16 @@ public class Login extends javax.swing.JFrame {
         
         
         
+        
+        
         //Make all panels except the Log in panel invisible
         jUserPanel.setVisible(false);
         jResourceListPanel.setVisible(false);
         jClientResourcePanel.setVisible(false);
         jMessageBoard.setVisible(false);
         jAdminMessagePanel.setVisible(false);
-        jMessages.setVisible(false);
+        jMessageBoardPanel.setVisible(false);
+        jMessageBoard.setVisible(false);
         
         
     }
@@ -66,25 +71,33 @@ public class Login extends javax.swing.JFrame {
         jUserPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLogoutButton = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        jMessageBoardPanel = new javax.swing.JPanel();
         jMessageBoard = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jMessages = new javax.swing.JList<>();
+        jTextArea3 = new javax.swing.JTextArea();
         jAdminMessagePanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jLabel6 = new javax.swing.JLabel();
         jResourceListPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jClientResourcePanel = new javax.swing.JPanel();
         jRent2Button = new javax.swing.JButton();
         jRent6Button = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jAdminResourcePanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jResourceListUI = new javax.swing.JList<>();
+        jIdSearch = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jSearchButton = new javax.swing.JButton();
+        jResponse = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jResourceList = new javax.swing.JTextArea();
+        jUserBooksPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jMainUserPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Apex Library Resource Management");
@@ -206,22 +219,34 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane2.setViewportView(jMessages);
+        jMessageBoardPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setViewportBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPane2.setHorizontalScrollBar(null);
+        jScrollPane2.setVerifyInputWhenFocusTarget(false);
+
+        jTextArea3.setColumns(1);
+        jTextArea3.setRows(5);
+        jTextArea3.setText("TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT TEST TEXT ");
+        jTextArea3.setToolTipText("");
+        jTextArea3.setWrapStyleWord(true);
+        jScrollPane2.setViewportView(jTextArea3);
 
         javax.swing.GroupLayout jMessageBoardLayout = new javax.swing.GroupLayout(jMessageBoard);
         jMessageBoard.setLayout(jMessageBoardLayout);
         jMessageBoardLayout.setHorizontalGroup(
             jMessageBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jMessageBoardLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
         jMessageBoardLayout.setVerticalGroup(
             jMessageBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jMessageBoardLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -235,7 +260,7 @@ public class Login extends javax.swing.JFrame {
             jAdminMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jAdminMessagePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jAdminMessagePanelLayout.setVerticalGroup(
@@ -246,122 +271,191 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Message Board");
+
+        javax.swing.GroupLayout jMessageBoardPanelLayout = new javax.swing.GroupLayout(jMessageBoardPanel);
+        jMessageBoardPanel.setLayout(jMessageBoardPanelLayout);
+        jMessageBoardPanelLayout.setHorizontalGroup(
+            jMessageBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jMessageBoardPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jMessageBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jMessageBoard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jAdminMessagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jAdminMessagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        jMessageBoardPanelLayout.setVerticalGroup(
+            jMessageBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jMessageBoardPanelLayout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jMessageBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jAdminMessagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jResourceListPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         jRent2Button.setText("Rent - 2 weeks");
 
         jRent6Button.setText("Rent - 6 weeks");
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Resource status");
+        jLabel5.setText("Borrowing");
 
-        jTextField1.setEditable(false);
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel7.setText("ID");
+
+        jSearchButton.setText("Search");
+        jSearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSearchButtonActionPerformed(evt);
+            }
+        });
+
+        jResponse.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jResponse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jResponseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jClientResourcePanelLayout = new javax.swing.GroupLayout(jClientResourcePanel);
         jClientResourcePanel.setLayout(jClientResourcePanelLayout);
         jClientResourcePanelLayout.setHorizontalGroup(
             jClientResourcePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jClientResourcePanelLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jClientResourcePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jClientResourcePanelLayout.createSequentialGroup()
+                        .addComponent(jIdSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jClientResourcePanelLayout.createSequentialGroup()
+                        .addComponent(jSearchButton)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(jClientResourcePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jClientResourcePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRent2Button, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jRent2Button, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
                     .addComponent(jRent6Button, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jResponse))
                 .addContainerGap())
-            .addGroup(jClientResourcePanelLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jClientResourcePanelLayout.setVerticalGroup(
             jClientResourcePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jClientResourcePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jClientResourcePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jIdSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSearchButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jResponse, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jRent2Button)
                 .addGap(18, 18, 18)
                 .addComponent(jRent6Button)
-                .addGap(37, 37, 37))
-        );
-
-        javax.swing.GroupLayout jAdminResourcePanelLayout = new javax.swing.GroupLayout(jAdminResourcePanel);
-        jAdminResourcePanel.setLayout(jAdminResourcePanelLayout);
-        jAdminResourcePanelLayout.setHorizontalGroup(
-            jAdminResourcePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jAdminResourcePanelLayout.setVerticalGroup(
-            jAdminResourcePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jAdminResourcePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jClientResourcePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jClientResourcePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jClientResourcePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jAdminResourcePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jClientResourcePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jScrollPane1.setViewportView(jResourceListUI);
+        jResourceList.setEditable(false);
+        jResourceList.setColumns(20);
+        jResourceList.setRows(5);
+        jScrollPane4.setViewportView(jResourceList);
 
         javax.swing.GroupLayout jResourceListPanelLayout = new javax.swing.GroupLayout(jResourceListPanel);
         jResourceListPanel.setLayout(jResourceListPanelLayout);
         jResourceListPanelLayout.setHorizontalGroup(
             jResourceListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jResourceListPanelLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jResourceListPanelLayout.setVerticalGroup(
             jResourceListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jResourceListPanelLayout.createSequentialGroup()
+            .addGroup(jResourceListPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jResourceListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jResourceListPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane4))
+                .addContainerGap())
+        );
+
+        jUserBooksPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 299, Short.MAX_VALUE)
+        );
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 326, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jUserBooksPanelLayout = new javax.swing.GroupLayout(jUserBooksPanel);
+        jUserBooksPanel.setLayout(jUserBooksPanelLayout);
+        jUserBooksPanelLayout.setHorizontalGroup(
+            jUserBooksPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jUserBooksPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jUserBooksPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jUserBooksPanelLayout.setVerticalGroup(
+            jUserBooksPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jUserBooksPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -371,23 +465,29 @@ public class Login extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jMainUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jResourceListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 322, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jMainUserPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jResourceListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jUserBooksPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jMessageBoardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jMainUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(63, 63, 63)
-                        .addComponent(jResourceListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jMessageBoardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jUserBooksPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jMainUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jResourceListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 0, 0)))
                 .addContainerGap())
         );
 
@@ -423,20 +523,20 @@ public class Login extends javax.swing.JFrame {
             
             if(jPassword.getText().equals(clientPassword)){
                 
-                System.out.println("Password correct, Welcome User");               
+                System.out.println("Password correct, Welcome User");
+                
+                
                
                 //Display User UI
                 jLoginPanel.setVisible(false);
                 jUserPanel.setVisible(true);
                 jResourceListPanel.setVisible(true);
                 jClientResourcePanel.setVisible(true);
-                jMessages.setVisible(true);
+                jMessageBoardPanel.setVisible(true);
+                jMessageBoard.setVisible(true);
                 
-                LoadResourcesList();
-                
-                
-                
-                                
+                LoadResources();
+                             
             }
         }
         //Checking Admin
@@ -452,7 +552,7 @@ public class Login extends javax.swing.JFrame {
                                 jLoginPanel.setVisible(false);
                                 jUserPanel.setVisible(true);
                                 jResourceListPanel.setVisible(true);
-                                jAdminResourcePanel.setVisible(true);
+                                
                                 
 
             }
@@ -469,9 +569,49 @@ public class Login extends javax.swing.JFrame {
         jUserPanel.setVisible(false);
         jResourceListPanel.setVisible(false);
         jClientResourcePanel.setVisible(false);
-        jAdminResourcePanel.setVisible(false);
+        
         
     }//GEN-LAST:event_jLogoutButtonActionPerformed
+
+    private void jResponseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jResponseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jResponseActionPerformed
+
+    private void jSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSearchButtonActionPerformed
+        // TODO add your handling code here:
+        
+        System.out.println("Searching");          
+                      
+        
+        int idTest;
+        int foundID;
+        
+        jResponse.getText();      
+     
+        idTest = Integer.parseInt(jIdSearch.getText());
+        
+        System.out.println("Searching for: " + idTest);
+
+        for (Resource i : resourceList){
+            if(i.getID() == idTest){
+                
+                String foundName = i.getResourceName();
+                jResponse.setText(foundName);
+                
+                
+                
+                
+                
+                break;
+            }
+            else{
+                jResponse.setText("Resource not found");
+            }
+
+        }
+        
+        
+    }//GEN-LAST:event_jSearchButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -509,15 +649,15 @@ public class Login extends javax.swing.JFrame {
     }
     
     
-    private void createResources(){
+    public void createResources(){
         
         DVD planetEarth = new DVD("Planet Earth Boxset", 1, 500, "dvd", "Not Overdue");
         Book mobyDick = new Book("Moby Dick", 2, 500, "Book", "Not Overdue");
-        Magazine artNews = new Magazine("ARTnews", 3, 500, "dvd", "Not Overdue");
-        Book religousStudies = new Book("Religious Studies", 2, 500, "Book", "Not Overdue");
-        Book javaForDummies = new Book("Java For Dummies", 2, 500, "Book", "Not Overdue");
+        Magazine artNews = new Magazine("ARTnews", 3, 500, "Magazine", "Not Overdue");
+        Book religousStudies = new Book("Religious Studies", 4, 500, "Book", "Not Overdue");
+        Book javaForDummies = new Book("Java For Dummies", 5, 500, "Book", "Not Overdue");
         
-        ArrayList<Resource> resourceList;
+        
         
         resourceList = new ArrayList();
         
@@ -529,47 +669,66 @@ public class Login extends javax.swing.JFrame {
         
         
     }
+       
     
-    private void LoadResourcesList(){
+    
+            
+    public void LoadResources(){
+        
+        
         
         String resourceListString = "";
         
         for (Resource i : resourceList)
         {
-            resourceListString += i.getResourceName() + i.getID() + " " + i.getTypeName() + " " + i.getDeweyClass() + " " + i.getOverdue();
+            resourceListString += i.getID() + ".  " + i.getResourceName() + " " + i.getTypeName() + "\n";
         }
+        
+        jResourceList.setText(resourceListString);
+        
+        jResourceList.setEditable(false);
+        
+        
         
         
     }
 
+    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jAdminMessagePanel;
-    private javax.swing.JPanel jAdminResourcePanel;
     private javax.swing.JPanel jClientResourcePanel;
+    private javax.swing.JTextField jIdSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JButton jLoginButton;
     private javax.swing.JPanel jLoginPanel;
     private javax.swing.JButton jLogoutButton;
     private javax.swing.JPanel jMainUserPanel;
     private javax.swing.JPanel jMessageBoard;
-    private javax.swing.JList<String> jMessages;
+    private javax.swing.JPanel jMessageBoardPanel;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPasswordField jPassword;
     private javax.swing.JButton jRent2Button;
     private javax.swing.JButton jRent6Button;
+    private javax.swing.JTextArea jResourceList;
     private javax.swing.JPanel jResourceListPanel;
-    private javax.swing.JList<String> jResourceListUI;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jResponse;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JButton jSearchButton;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JPanel jUserBooksPanel;
     private javax.swing.JTextField jUserName;
     private javax.swing.JPanel jUserPanel;
     // End of variables declaration//GEN-END:variables
