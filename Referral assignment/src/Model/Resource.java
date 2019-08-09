@@ -17,15 +17,25 @@ public class Resource {
     private int id;
     private int deweyClass;
     private String typeName;
+    private boolean available;
     private String overdue;    
 
-    public Resource (String tempResourceName, int tempId, int tempDeweyClass, String tempTypeName, String tempOverdue){
+    public Resource (String tempResourceName, int tempId, int tempDeweyClass, String tempTypeName, boolean tempAvailable, String tempOverdue){
     
         resourceName = tempResourceName;
         id = tempId;
         deweyClass = tempDeweyClass;
         typeName = tempTypeName;
+        available = tempAvailable;
         overdue = tempOverdue;       
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
     public String getResourceName() {
