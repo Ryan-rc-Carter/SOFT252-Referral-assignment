@@ -157,7 +157,7 @@ public class Login extends javax.swing.JFrame {
         jNewResourceName = new javax.swing.JTextField();
         jNewResourceClass = new javax.swing.JTextField();
         jNewResourceType = new javax.swing.JTextField();
-        jCreateResource = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jError = new javax.swing.JTextField();
 
@@ -658,10 +658,10 @@ public class Login extends javax.swing.JFrame {
 
         jLabel14.setText("Resource Type");
 
-        jCreateResource.setText("Create Resource");
-        jCreateResource.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Create Resource");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCreateResourceActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -694,7 +694,7 @@ public class Login extends javax.swing.JFrame {
                                 .addComponent(jLabel14)
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCreateResource)
+                                    .addComponent(jButton1)
                                     .addComponent(jNewResourceType, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)))))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(49, 49, 49)
@@ -723,7 +723,7 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jError, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCreateResource)
+                .addComponent(jButton1)
                 .addContainerGap(128, Short.MAX_VALUE))
         );
 
@@ -1117,7 +1117,7 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jAdminSendActionPerformed
 
-    private void jCreateResourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCreateResourceActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
         jNewResourceName.getText();
@@ -1171,7 +1171,7 @@ public class Login extends javax.swing.JFrame {
             jError.setVisible(true);
             jError.setText("No Name given");
         }
-    }//GEN-LAST:event_jCreateResourceActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1360,8 +1360,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton jAdminSend;
     private javax.swing.JTextField jAvailable;
     private javax.swing.JTextArea jBorrowedResources;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jClientResourcePanel;
-    private javax.swing.JButton jCreateResource;
     private javax.swing.JTextArea jDueOverdue;
     private javax.swing.JTextField jError;
     private javax.swing.JTextField jIdSearch;
