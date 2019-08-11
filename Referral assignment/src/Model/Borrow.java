@@ -7,6 +7,8 @@ package Model;
 
 
 import java.io.Serializable;
+import java.time.LocalDate;
+
 
 
 /**
@@ -18,15 +20,17 @@ public class Borrow {
     private String borrower;
     private int resourceID;
     private String resourceName;
-    private int daysRemaining;
+    private LocalDate returnDate;
+    private int daysBorrowed;
     
-    public Borrow (String tempBorrower, int tempResourceID, String tempResourceName, int tempDaysRemaining){
+    public Borrow (String tempBorrower, int tempResourceID, String tempResourceName, LocalDate tempReturnDate, int tempDaysBorrowed){
         
         
         borrower = tempBorrower;
         resourceID = tempResourceID;
         resourceName = tempResourceName;
-        daysRemaining = tempDaysRemaining;
+        returnDate = tempReturnDate;
+        daysBorrowed = tempDaysBorrowed;
     }
 
     public String getResourceName() {
@@ -53,12 +57,20 @@ public class Borrow {
         this.resourceID = resourceID;
     }
 
-    public int getDaysRemaining() {
-        return daysRemaining;
+    public LocalDate getReturnDate() {
+        return returnDate;
     }
 
-    public void setDaysRemaining(int daysRemaining) {
-        this.daysRemaining = daysRemaining;
+    public void setReturnDate(LocalDate daysRemaining) {
+        this.returnDate = daysRemaining;
+    }
+
+    public int getDaysBorrowed() {
+        return daysBorrowed;
+    }
+
+    public void setDaysBorrowed(int daysBorrowed) {
+        this.daysBorrowed = daysBorrowed;
     }
     
     

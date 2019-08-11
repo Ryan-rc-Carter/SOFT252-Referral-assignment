@@ -10,8 +10,10 @@ import Model.Borrow;
 import Model.Client;
 import Model.DVD;
 import Model.Magazine;
+import Model.Message;
 import Model.Resource;
 import java.util.ArrayList;
+import java.time.LocalDate;
 import javax.swing.DefaultListModel;
 
 /**
@@ -25,14 +27,19 @@ public class Login extends javax.swing.JFrame {
      */
     //private ClientUI clientUI;
     
-    public ArrayList<Resource> resourceList;
-    
+    private ArrayList<Resource> resourceList;    
     
     public ArrayList<Borrow> borrowedList;
     
     public ArrayList<Borrow> lateResources;
     
+    public ArrayList<Message> messageList;
     
+    public ArrayList <Borrow> dueLateResources;
+    
+    public Message message;
+    
+    public String messageString = "";
     
     public Client currentUser;
     
@@ -53,7 +60,11 @@ public class Login extends javax.swing.JFrame {
         
         borrowedList = new ArrayList();
         
+        messageList = new ArrayList();
         
+        dueLateResources = new ArrayList();
+        
+        getDate();
         
         //Make all panels except the Log in panel invisible
         jUserPanel.setVisible(false);
@@ -64,6 +75,19 @@ public class Login extends javax.swing.JFrame {
         jMessageBoardPanel.setVisible(false);
         jMessageBoard.setVisible(false);
         jUserBooksPanel.setVisible(false);
+        jAdminPanel.setVisible(false);
+        jError.setVisible(false);
+        
+        
+        messageString = "Welcome to the Apex Library resource management software. This is an early version ";
+        
+        System.out.println(messageString);
+        
+        Message automatedMessage = new Message("Automated Message: ", messageString);
+        
+        messageList.add(automatedMessage);
+        
+        
         
         
     }
@@ -77,6 +101,7 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel4 = new javax.swing.JPanel();
         jMainUserPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLoginPanel = new javax.swing.JPanel();
@@ -89,11 +114,13 @@ public class Login extends javax.swing.JFrame {
         jWelcome = new javax.swing.JLabel();
         jLogoutButton = new javax.swing.JButton();
         jMessageBoardPanel = new javax.swing.JPanel();
-        jMessageBoard = new javax.swing.JPanel();
         jAdminMessagePanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jAdminMessage = new javax.swing.JTextArea();
+        jAdminSend = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jMessageBoard = new javax.swing.JTextArea();
         jResourceListPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jClientResourcePanel = new javax.swing.JPanel();
@@ -121,6 +148,29 @@ public class Login extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jDueOverdue = new javax.swing.JTextArea();
+        jAdminPanel = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jNewResourceName = new javax.swing.JTextField();
+        jNewResourceClass = new javax.swing.JTextField();
+        jNewResourceType = new javax.swing.JTextField();
+        jCreateResource = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jError = new javax.swing.JTextField();
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -249,20 +299,18 @@ public class Login extends javax.swing.JFrame {
 
         jMessageBoardPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        javax.swing.GroupLayout jMessageBoardLayout = new javax.swing.GroupLayout(jMessageBoard);
-        jMessageBoard.setLayout(jMessageBoardLayout);
-        jMessageBoardLayout.setHorizontalGroup(
-            jMessageBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jMessageBoardLayout.setVerticalGroup(
-            jMessageBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 486, Short.MAX_VALUE)
-        );
+        jAdminMessage.setColumns(20);
+        jAdminMessage.setRows(5);
+        jAdminMessage.setToolTipText("");
+        jAdminMessage.setWrapStyleWord(true);
+        jScrollPane3.setViewportView(jAdminMessage);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
+        jAdminSend.setText("Send");
+        jAdminSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAdminSendActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jAdminMessagePanelLayout = new javax.swing.GroupLayout(jAdminMessagePanel);
         jAdminMessagePanel.setLayout(jAdminMessagePanelLayout);
@@ -270,20 +318,37 @@ public class Login extends javax.swing.JFrame {
             jAdminMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jAdminMessagePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jAdminMessagePanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jAdminSend, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
         jAdminMessagePanelLayout.setVerticalGroup(
             jAdminMessagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jAdminMessagePanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jAdminSend)
+                .addGap(14, 14, 14))
         );
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Message Board");
+
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setEnabled(false);
+
+        jMessageBoard.setEditable(false);
+        jMessageBoard.setColumns(2);
+        jMessageBoard.setLineWrap(true);
+        jMessageBoard.setRows(5);
+        jMessageBoard.setWrapStyleWord(true);
+        jMessageBoard.setAutoscrolls(false);
+        jScrollPane2.setViewportView(jMessageBoard);
 
         javax.swing.GroupLayout jMessageBoardPanelLayout = new javax.swing.GroupLayout(jMessageBoardPanel);
         jMessageBoardPanel.setLayout(jMessageBoardPanelLayout);
@@ -292,19 +357,21 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jMessageBoardPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jMessageBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
                     .addComponent(jAdminMessagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jMessageBoard, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jMessageBoardPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(49, 49, 49)))
                 .addContainerGap())
-            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jMessageBoardPanelLayout.setVerticalGroup(
             jMessageBoardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jMessageBoardPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jMessageBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
                 .addComponent(jAdminMessagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -386,7 +453,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jClientResourcePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addGap(129, 129, 129)
+                .addGap(87, 87, 87)
                 .addGroup(jClientResourcePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jIdSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
@@ -442,7 +509,7 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jResourceListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane4))
-                .addContainerGap())
+                .addGap(2, 2, 2))
         );
 
         jUserBooksPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -494,8 +561,7 @@ public class Login extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jReturnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jLabel9)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(37, 37, 37)
@@ -504,7 +570,7 @@ public class Login extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jReturnSearchDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)))
-                .addContainerGap())
+                .addGap(116, 116, 116))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -529,7 +595,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Late returns");
+        jLabel10.setText("Late and Due returns");
 
         jDueOverdue.setColumns(20);
         jDueOverdue.setRows(5);
@@ -579,6 +645,105 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jAdminPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("New Resource");
+
+        jLabel12.setText("Resource Name");
+
+        jLabel13.setText("Dewey Class");
+
+        jLabel14.setText("Resource Type");
+
+        jCreateResource.setText("Create Resource");
+        jCreateResource.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCreateResourceActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Note: Use lower case when creating a new resource");
+
+        jError.setEditable(false);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel13))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jNewResourceName)
+                                    .addComponent(jNewResourceClass, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)))
+                            .addComponent(jLabel11)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCreateResource)
+                                    .addComponent(jNewResourceType, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)))))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addComponent(jError, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(jNewResourceName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jNewResourceClass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(jNewResourceType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jError, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCreateResource)
+                .addContainerGap(128, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jAdminPanelLayout = new javax.swing.GroupLayout(jAdminPanel);
+        jAdminPanel.setLayout(jAdminPanelLayout);
+        jAdminPanelLayout.setHorizontalGroup(
+            jAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jAdminPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jAdminPanelLayout.setVerticalGroup(
+            jAdminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jAdminPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -591,7 +756,9 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jUserBooksPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jMessageBoardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jAdminPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jMessageBoardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -599,12 +766,21 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jMessageBoardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jUserBooksPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jMainUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jResourceListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jMessageBoardPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jAdminPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jMainUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jResourceListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jUserBooksPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(11, 11, 11))))
         );
 
         pack();
@@ -623,8 +799,8 @@ public class Login extends javax.swing.JFrame {
         jPassword.getText();
         
         //Preset user
-        String clientOneUsername = "Ryan";
-        String clientOnePassword = "Carter";
+        String clientOneUsername = "User1";
+        String clientOnePassword = "User1";
         
         String clientTwoUsername = "User2";
         String clientTwoPassword = "User2";
@@ -634,7 +810,7 @@ public class Login extends javax.swing.JFrame {
         
         //Preset Admin
         String adminUserName = "Admin";
-        String adminPassword = "Password";
+        String adminPassword = "Admin";
         
         
         
@@ -651,7 +827,7 @@ public class Login extends javax.swing.JFrame {
                 
                 
                 
-                currentUser = new Client("Ryan", "Carter", false, "Ryan", "Carter");
+                currentUser = new Client("Jane", "Smith", false, "Ryan", "Carter");
                 
                 System.out.println("Password correct, Welcome " + currentUser.getFirstName() + " " + currentUser.getLastName());
                 
@@ -668,6 +844,7 @@ public class Login extends javax.swing.JFrame {
                 
                 LoadResources();
                 LoadBorrowed();
+                LoadMessages();
                              
             }
         }
@@ -696,6 +873,7 @@ public class Login extends javax.swing.JFrame {
                 
                 LoadResources();
                 LoadBorrowed();
+                LoadMessages();
 
                              
             }
@@ -726,7 +904,8 @@ public class Login extends javax.swing.JFrame {
                 jUserBooksPanel.setVisible(true);
                 
                 LoadResources();
-                LoadBorrowed();             
+                LoadBorrowed();
+                LoadMessages();
             }
         }
         //Checking Admin
@@ -737,14 +916,22 @@ public class Login extends javax.swing.JFrame {
             if(jPassword.getText().equals(adminPassword)){
                
                 System.out.println("Password correct, Welcome Admin");
+                
+                
+                currentUser = new Client("Admin", "Admin", false, "Administrator", "Administrator");
 
                 //Display Admin UI
                 jLoginPanel.setVisible(false);
                 jUserPanel.setVisible(true);
                 jResourceListPanel.setVisible(true);
                 jMessageBoardPanel.setVisible(true);
-                jMessageBoard.setVisible(true);                                
-
+                jMessageBoard.setVisible(true);   
+                jAdminMessagePanel.setVisible(true);
+                jAdminMessage.setVisible(true);
+                jAdminPanel.setVisible(true);
+                
+                LoadResources();
+                LoadMessages();
 
             }
         }
@@ -763,6 +950,8 @@ public class Login extends javax.swing.JFrame {
         jMessageBoardPanel.setVisible(false);
         jMessageBoard.setVisible(false);
         jUserBooksPanel.setVisible(false);
+        jAdminMessage.setVisible(false);
+        jAdminPanel.setVisible(false);
         
     }//GEN-LAST:event_jLogoutButtonActionPerformed
 
@@ -782,7 +971,7 @@ public class Login extends javax.swing.JFrame {
      
         idTest = Integer.parseInt(jIdSearch.getText());
         System.out.println("Searching for: " + idTest);
-
+        
         for (Resource i : resourceList){
             if(i.getID() == idTest){
                 
@@ -915,6 +1104,75 @@ public class Login extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jReturnResourceActionPerformed
 
+    private void jAdminSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAdminSendActionPerformed
+        // TODO add your handling code here:
+        
+        if(jAdminMessage.getText() != null){
+            
+            Message message = new Message(currentUser.getFirstName(), jAdminMessage.getText());
+            
+            messageList.add(message);
+            LoadMessages();
+            
+        }
+    }//GEN-LAST:event_jAdminSendActionPerformed
+
+    private void jCreateResourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCreateResourceActionPerformed
+        // TODO add your handling code here:
+        
+        jNewResourceName.getText();
+        jNewResourceClass.getText();
+        jNewResourceType.getText();
+        
+        if(jNewResourceName.getText() != null){
+            if(jNewResourceClass.getText() != null){
+                if(jNewResourceType.getText() != null ){
+        
+                    String name = jNewResourceName.getText();
+                    String type = jNewResourceType.getText();
+                    int deweyClass = Integer.parseInt(jNewResourceClass.getText());
+                    
+                    int nextIndex;
+                    
+                    nextIndex = resourceList.size() + 1;
+
+                    switch(type){
+                        case "book":
+                            Book newBook = new Book(name, nextIndex,deweyClass, "Magazine", true, false);
+                            
+                            resourceList.add(newBook);
+                            break;
+                        case "dvd":
+                            DVD newDVD = new DVD(name, nextIndex,deweyClass, "Magazine", true, false);
+                            
+                            resourceList.add(newDVD);
+                            break;
+                        case "magazine":
+                            Magazine newMagazine = new Magazine(name, nextIndex,deweyClass, "Magazine", true, false);
+                            
+                            resourceList.add(newMagazine);
+                            break;
+                    }
+                    
+                    jNewResourceName.setText("");
+                    jNewResourceClass.setText("");
+                    jNewResourceType.setText("");
+                    LoadResources();
+                    
+                    
+                }
+                jError.setVisible(true);
+                jError.setText("Invalid type given");
+            }
+            jError.setVisible(true);
+            jError.setText("No/invalid Class given, Use Dewey Classification to give a valid input");
+        }
+        else{
+            jError.setVisible(true);
+            jError.setText("No Name given");
+        }
+    }//GEN-LAST:event_jCreateResourceActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -953,11 +1211,11 @@ public class Login extends javax.swing.JFrame {
     
     public void createResources(){
         
-        DVD planetEarth = new DVD("Planet Earth Boxset", 1, 500, "dvd", true,  "Not Overdue");
-        Book mobyDick = new Book("Moby Dick", 2, 500, "Book", true, "Not Overdue");
-        Magazine artNews = new Magazine("ARTnews", 3, 500, "Magazine",true, "Not Overdue");
-        Book religousStudies = new Book("Religious Studies", 4, 500, "Book",true, "Not Overdue");
-        Book javaForDummies = new Book("Java For Dummies", 5, 500, "Book",true, "Not Overdue");
+        DVD planetEarth = new DVD("Planet Earth Boxset", 1, 500, "dvd", true,  false);
+        Book mobyDick = new Book("Moby Dick", 2, 500, "Book", true, false);
+        Magazine artNews = new Magazine("ARTnews", 3, 500, "Magazine",true, false);
+        Book religousStudies = new Book("Religious Studies", 4, 500, "Book",true, false);
+        Book javaForDummies = new Book("Java For Dummies", 5, 500, "Book",true, false);
         
         
         
@@ -976,14 +1234,14 @@ public class Login extends javax.swing.JFrame {
         String userName;
         int  ID;
         String resourceName;
-        int days;
+        LocalDate returnDate;
         
               
         userName = currentUser.getFirstName();
         
         ID = tempResourceID;
         
-        days = tempDaysBorrowed;
+        returnDate = plusDays(tempDaysBorrowed);
         
         resourceName = tempResourceName;
         
@@ -992,16 +1250,29 @@ public class Login extends javax.swing.JFrame {
         jIdSearch.setText("");
         
          
-        //System.out.println(userName + " " + tempResourceID + " " + tempDaysBorrowed);
+        System.out.println(userName + " " + tempResourceID + " " + tempDaysBorrowed);
         
-        Borrow borrow = new Borrow(userName, ID,resourceName, days);     
+        Borrow borrow = new Borrow(userName, ID,resourceName, returnDate, tempDaysBorrowed);     
         
         
         borrowedList.add(borrow);
     
     }
            
+    public void LoadMessages(){
         
+        String messageListString = "";
+        
+        for (Message i : messageList){
+            
+            messageListString += i.getSenderID() + ": " + i.getMessageContents() + "\n----------------------------------------\n";
+            
+        }
+        
+        jMessageBoard.setText(messageListString);
+    
+    }
+            
             
             
     public void LoadResources(){
@@ -1027,33 +1298,82 @@ public class Login extends javax.swing.JFrame {
     public void LoadBorrowed(){
         
         String borrowedListString = "";
+        String dueLateString = "";
         
         for (Borrow i : borrowedList){
             if(i.getBorrower().equals(currentUser.getFirstName())){
-                borrowedListString += i.getResourceID() + " " + i.getResourceName() + " Days remaining: " + i.getDaysRemaining() + "\n";
+                                              
+                if(i.getReturnDate().compareTo(LocalDate.now()) < i.getDaysBorrowed()){
+                    borrowedListString += i.getResourceID() + " " + i.getResourceName() + " Date due: " + i.getReturnDate() + "\n";
+                }
+                else if (i.getReturnDate().compareTo(LocalDate.now()) == i.getDaysBorrowed()){
+                    dueLateString += i.getResourceID() + " " + i.getResourceName() + " Date due: " + i.getReturnDate() + "\n";
+                }
+                else if (i.getReturnDate().compareTo(LocalDate.now()) > i.getDaysBorrowed()){
+                    dueLateString += i.getResourceID() + " " + i.getResourceName() + " Date due: " + i.getReturnDate() + "\n";                  
+                    
+                }
+                
+                
+                
             }          
             
         }
         
         jBorrowedResources.setText(borrowedListString);
+        jDueOverdue.setText(dueLateString);
     }
     
+    public void getDate(){
+        
+        System.out.println(LocalDate.now());
+        
+        
+        //System.out.println(LocalDate);
+        
+        
+        
+        
+     
+    }
     
 
-    
+    public LocalDate plusDays(int days){     
+              
+        LocalDate date = LocalDate.now();
+        
+        LocalDate returnDate;
+        
+        returnDate = date.plusDays(days);
+        
+        
+        
+        return returnDate;
+        
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea jAdminMessage;
     private javax.swing.JPanel jAdminMessagePanel;
+    private javax.swing.JPanel jAdminPanel;
+    private javax.swing.JButton jAdminSend;
     private javax.swing.JTextField jAvailable;
     private javax.swing.JTextArea jBorrowedResources;
     private javax.swing.JPanel jClientResourcePanel;
+    private javax.swing.JButton jCreateResource;
     private javax.swing.JTextArea jDueOverdue;
+    private javax.swing.JTextField jError;
     private javax.swing.JTextField jIdSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1063,11 +1383,16 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jLoginPanel;
     private javax.swing.JButton jLogoutButton;
     private javax.swing.JPanel jMainUserPanel;
-    private javax.swing.JPanel jMessageBoard;
+    private javax.swing.JTextArea jMessageBoard;
     private javax.swing.JPanel jMessageBoardPanel;
+    private javax.swing.JTextField jNewResourceClass;
+    private javax.swing.JTextField jNewResourceName;
+    private javax.swing.JTextField jNewResourceType;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPasswordField jPassword;
     private javax.swing.JButton jRent2Button;
     private javax.swing.JButton jRent6Button;
@@ -1079,11 +1404,11 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton jReturnSearchButton;
     private javax.swing.JTextField jReturnSearchDisplay;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JButton jSearchButton;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel jUserBooksPanel;
     private javax.swing.JTextField jUserName;
     private javax.swing.JPanel jUserPanel;

@@ -18,9 +18,9 @@ public class Resource {
     private int deweyClass;
     private String typeName;
     private boolean available;
-    private String overdue;    
+    private boolean overdue;    
 
-    public Resource (String tempResourceName, int tempId, int tempDeweyClass, String tempTypeName, boolean tempAvailable, String tempOverdue){
+    public Resource (String tempResourceName, int tempId, int tempDeweyClass, String tempTypeName, boolean tempAvailable, boolean tempOverdue){
     
         resourceName = tempResourceName;
         id = tempId;
@@ -70,11 +70,11 @@ public class Resource {
         this.typeName = typeName;
     }
 
-    public String getOverdue() {
+    public boolean getOverdue() {
         return overdue;
     }
 
-    public void setOverdue(String overdue) {
+    public void setOverdue(boolean overdue) {
         this.overdue = overdue;
     }
     
