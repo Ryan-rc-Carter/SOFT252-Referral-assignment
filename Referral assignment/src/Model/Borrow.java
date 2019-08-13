@@ -22,8 +22,10 @@ public class Borrow {
     private String resourceName;
     private LocalDate returnDate;
     private int daysBorrowed;
+    private boolean extensionRequested;
+    private boolean overdue;
     
-    public Borrow (String tempBorrower, int tempResourceID, String tempResourceName, LocalDate tempReturnDate, int tempDaysBorrowed){
+    public Borrow (String tempBorrower, int tempResourceID, String tempResourceName, LocalDate tempReturnDate, int tempDaysBorrowed, boolean tempExtensionRequested, boolean tempOverdue){
         
         
         borrower = tempBorrower;
@@ -31,6 +33,9 @@ public class Borrow {
         resourceName = tempResourceName;
         returnDate = tempReturnDate;
         daysBorrowed = tempDaysBorrowed;
+        extensionRequested = tempExtensionRequested;
+        overdue = tempOverdue;
+        
     }
 
     public String getResourceName() {
@@ -71,6 +76,22 @@ public class Borrow {
 
     public void setDaysBorrowed(int daysBorrowed) {
         this.daysBorrowed = daysBorrowed;
+    }
+
+    public boolean isExtensionRequested() {
+        return extensionRequested;
+    }
+
+    public void setExtensionRequested(boolean extensionRequested) {
+        this.extensionRequested = extensionRequested;
+    }
+
+    public boolean isOverdue() {
+        return overdue;
+    }
+
+    public void setOverdue(boolean overdue) {
+        this.overdue = overdue;
     }
     
     

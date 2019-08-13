@@ -18,16 +18,16 @@ public class Resource {
     private int deweyClass;
     private String typeName;
     private boolean available;
-    private boolean overdue;    
+     
 
-    public Resource (String tempResourceName, int tempId, int tempDeweyClass, String tempTypeName, boolean tempAvailable, boolean tempOverdue){
+    public Resource (String tempResourceName, int tempId, int tempDeweyClass, String tempTypeName, boolean tempAvailable){
     
         resourceName = tempResourceName;
         id = tempId;
         deweyClass = tempDeweyClass;
         typeName = tempTypeName;
         available = tempAvailable;
-        overdue = tempOverdue;       
+              
     }
 
     public boolean isAvailable() {
@@ -70,13 +70,8 @@ public class Resource {
         this.typeName = typeName;
     }
 
-    public boolean getOverdue() {
-        return overdue;
-    }
-
-    public void setOverdue(boolean overdue) {
-        this.overdue = overdue;
-    }
+    
+    
     
     
     
