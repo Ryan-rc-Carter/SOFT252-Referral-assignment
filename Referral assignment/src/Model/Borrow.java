@@ -24,14 +24,16 @@ public class Borrow {
     private int daysBorrowed;
     private boolean extensionRequested;
     private boolean overdue;
+    private LocalDate remindDate;
     
-    public Borrow (String tempBorrower, int tempResourceID, String tempResourceName, LocalDate tempReturnDate, int tempDaysBorrowed, boolean tempExtensionRequested, boolean tempOverdue){
+    public Borrow (String tempBorrower, int tempResourceID, String tempResourceName, LocalDate tempReturnDate, LocalDate tempRemindDate, int tempDaysBorrowed, boolean tempExtensionRequested, boolean tempOverdue){
         
         
         borrower = tempBorrower;
         resourceID = tempResourceID;
         resourceName = tempResourceName;
         returnDate = tempReturnDate;
+        remindDate = tempRemindDate;
         daysBorrowed = tempDaysBorrowed;
         extensionRequested = tempExtensionRequested;
         overdue = tempOverdue;
@@ -92,6 +94,14 @@ public class Borrow {
 
     public void setOverdue(boolean overdue) {
         this.overdue = overdue;
+    }
+
+    public LocalDate getRemindDate() {
+        return remindDate;
+    }
+
+    public void setRemindDate(LocalDate remindDate) {
+        this.remindDate = remindDate;
     }
     
     

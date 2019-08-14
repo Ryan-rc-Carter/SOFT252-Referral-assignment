@@ -5,14 +5,18 @@
  */
 package Model;
 
+import java.util.ArrayList;
+
+
+
 /**
  *
  * @author Ryan
  */
 public class Book extends Resource{
     
-    public Book(String tempResourceName, int tempID, int tempDeweyClass, String tempTypeName, boolean tempAvailable){
-        super(tempResourceName, tempID, tempDeweyClass, tempTypeName,tempAvailable);
+    public Book(String tempResourceName, int tempID, int tempDeweyClass, String tempTypeName, boolean tempAvailable, double tempRating, ArrayList<Integer> tempRatingList){
+        super(tempResourceName, tempID, tempDeweyClass, tempTypeName,tempAvailable, tempRating, tempRatingList);
     
     }
     

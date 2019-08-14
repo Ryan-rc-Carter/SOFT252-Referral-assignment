@@ -44,6 +44,10 @@ public class Login extends javax.swing.JFrame {
     
     public ArrayList <Extension> extensionRequestList;
     
+    public ArrayList <Integer> creationArray;
+    
+    
+    
     public Message message;
     
     public String messageString = "";
@@ -53,6 +57,8 @@ public class Login extends javax.swing.JFrame {
     public Resource foundID;
     
     public Borrow borrowID;
+    
+    public int extensionID;
     
     public int returningID;
     
@@ -67,7 +73,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         
-        createResources();
+        
         
         borrowedList = new ArrayList();
         
@@ -77,7 +83,13 @@ public class Login extends javax.swing.JFrame {
         
         extensionRequestList = new ArrayList();
         
+        creationArray = new ArrayList();
+        creationArray.add(3);
+        
         currentDate = LocalDate.now();
+        
+        
+        createResources();
         
         //Make all panels except the Log in panel invisible
         jUserPanel.setVisible(false);
@@ -157,6 +169,9 @@ public class Login extends javax.swing.JFrame {
         jReturnSearchButton = new javax.swing.JButton();
         jReturnSearchDisplay = new javax.swing.JTextField();
         jReturnResource = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jRating = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -167,7 +182,7 @@ public class Login extends javax.swing.JFrame {
         jExtensionID = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jExtensionName = new javax.swing.JTextField();
-        jSearchExtension = new javax.swing.JButton();
+        jSearchIDForExtension = new javax.swing.JButton();
         jRequestExtension = new javax.swing.JButton();
         jAdminPanel = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -185,6 +200,12 @@ public class Login extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jExtensionRequests = new javax.swing.JTextArea();
+        jTextField1 = new javax.swing.JTextField();
+        jExtensionSearchResult = new javax.swing.JTextField();
+        jAllow = new javax.swing.JButton();
+        jDecline = new javax.swing.JButton();
+        jExceptionSearch = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         jAdvanceTime1Day = new javax.swing.JButton();
@@ -489,7 +510,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jResponse, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jAvailable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(jRent2Button)
                 .addGap(18, 18, 18)
                 .addComponent(jRent6Button)
@@ -569,6 +590,13 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jLabel20.setText("Would you like to rate this resource?");
+        jLabel20.setToolTipText("");
+        jLabel20.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel20.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+
+        jLabel21.setText("1 - 5");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -578,7 +606,25 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel20)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(59, 59, 59)
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRating, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jReturnResource)
+                                .addGap(92, 92, 92))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jReturnSearchDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(65, 65, 65))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(98, 98, 98))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(31, 31, 31)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -586,19 +632,8 @@ public class Login extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jReturnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel9)))
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(37, 37, 37)
-                                        .addComponent(jReturnResource))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jReturnSearchDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)))
-                        .addGap(98, 98, 98))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel9))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -611,13 +646,24 @@ public class Login extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jReturnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jReturnSearchDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jReturnSearchButton)
-                    .addComponent(jReturnResource))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jReturnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jReturnSearchButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jReturnSearchDisplay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jReturnResource)
+                        .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel21)
+                            .addComponent(jRating, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38))))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -626,6 +672,7 @@ public class Login extends javax.swing.JFrame {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Late and Due returns");
 
+        jDueOverdue.setEditable(false);
         jDueOverdue.setColumns(20);
         jDueOverdue.setRows(5);
         jScrollPane5.setViewportView(jDueOverdue);
@@ -670,10 +717,10 @@ public class Login extends javax.swing.JFrame {
 
         jExtensionName.setEditable(false);
 
-        jSearchExtension.setText("Search");
-        jSearchExtension.addActionListener(new java.awt.event.ActionListener() {
+        jSearchIDForExtension.setText("Search");
+        jSearchIDForExtension.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jSearchExtensionActionPerformed(evt);
+                jSearchIDForExtensionActionPerformed(evt);
             }
         });
 
@@ -694,7 +741,7 @@ public class Login extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(jSearchExtension)
+                                .addComponent(jSearchIDForExtension)
                                 .addGap(77, 77, 77)
                                 .addComponent(jRequestExtension))
                             .addGroup(jPanel7Layout.createSequentialGroup()
@@ -720,7 +767,7 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jExtensionName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSearchExtension)
+                    .addComponent(jSearchIDForExtension)
                     .addComponent(jRequestExtension))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
@@ -841,6 +888,31 @@ public class Login extends javax.swing.JFrame {
         jExtensionRequests.setRows(5);
         jScrollPane6.setViewportView(jExtensionRequests);
 
+        jExtensionSearchResult.setEditable(false);
+
+        jAllow.setText("Allow Extension");
+        jAllow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAllowActionPerformed(evt);
+            }
+        });
+
+        jDecline.setText("Decline Extension");
+        jDecline.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDeclineActionPerformed(evt);
+            }
+        });
+
+        jExceptionSearch.setText("Search");
+        jExceptionSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jExceptionSearchActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setText("ID");
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -851,8 +923,23 @@ public class Login extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane6))
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(jLabel18)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGap(99, 99, 99)
+                                .addComponent(jLabel18))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel8Layout.createSequentialGroup()
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jExtensionSearchResult, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jExceptionSearch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jDecline, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                                        .addComponent(jAllow, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -863,7 +950,18 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jExtensionSearchResult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jExceptionSearch)
+                .addGap(12, 12, 12)
+                .addComponent(jAllow)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jDecline)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jAdminPanelLayout = new javax.swing.GroupLayout(jAdminPanel);
@@ -1094,6 +1192,7 @@ public class Login extends javax.swing.JFrame {
                 
                 
                 currentUser = new Client("Admin", "Admin", false, "Administrator", "Administrator");
+                jWelcome.setText("Welcome " + currentUser.getFirstName() + " " + currentUser.getLastName());
 
                 //Display Admin UI
                 jLoginPanel.setVisible(false);
@@ -1260,7 +1359,26 @@ public class Login extends javax.swing.JFrame {
 
                 if (k.getID() == returningID)            
                 {
-                    k.setAvailable(true);
+                    if(jRating != null){
+                        
+                        int tempRating = Integer.parseInt(jRating.getText());
+                        
+                        
+                        
+                        if((tempRating > 0) &&(tempRating <= 5)){
+                            
+                            System.out.println("Calculating rating");
+                            
+                            k.setAverageRating(CalculateRating(tempRating, k));
+                            
+                            
+                            
+                            k.setAvailable(true);
+                        }                      
+                        
+                    }
+                    
+                    
                     
 
                     borrowedList.remove(index);
@@ -1317,18 +1435,18 @@ public class Login extends javax.swing.JFrame {
 
                     switch(type){
                         case "book":
-                            Book newBook = new Book(name, nextIndex,deweyClass, "Magazine", true);
+                            Book newBook = new Book(name, nextIndex,deweyClass, "Magazine", true, 3, creationArray);
                             
                             
                             resourceList.add(newBook);
                             break;
                         case "dvd":
-                            DVD newDVD = new DVD(name, nextIndex,deweyClass, "Magazine", true);
+                            DVD newDVD = new DVD(name, nextIndex,deweyClass, "Magazine", true, 3, creationArray);
                             
                             resourceList.add(newDVD);
                             break;
                         case "magazine":
-                            Magazine newMagazine = new Magazine(name, nextIndex,deweyClass, "Magazine", true);
+                            Magazine newMagazine = new Magazine(name, nextIndex,deweyClass, "Magazine", true, 3, creationArray);
                             
                             resourceList.add(newMagazine);
                             break;
@@ -1382,11 +1500,14 @@ public class Login extends javax.swing.JFrame {
         
         extensionRequestList.add(extension);
         
+        jExtensionName.setText("");
+        jExtensionID.setText("");
+        
         
                
     }//GEN-LAST:event_jRequestExtensionActionPerformed
 
-    private void jSearchExtensionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSearchExtensionActionPerformed
+    private void jSearchIDForExtensionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSearchIDForExtensionActionPerformed
         // TODO add your handling code here:
         
         try{
@@ -1416,7 +1537,77 @@ public class Login extends javax.swing.JFrame {
             
         }
         
-    }//GEN-LAST:event_jSearchExtensionActionPerformed
+    }//GEN-LAST:event_jSearchIDForExtensionActionPerformed
+
+    private void jAllowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAllowActionPerformed
+        // TODO add your handling code here:
+        
+        LocalDate tempReturnDate;
+        LocalDate tempRemindDate;
+        
+        
+        for(Borrow i : borrowedList){
+            if(i.getResourceID() == extensionID){
+                i.setExtensionRequested(true);
+                
+                tempReturnDate = i.getReturnDate();
+                tempRemindDate = i.getRemindDate();
+               
+                tempReturnDate.plusDays(7);
+                tempRemindDate.plusDays(7);
+                
+                i.setReturnDate(tempReturnDate);
+                i.setRemindDate(tempRemindDate);
+                
+                
+                
+                
+                
+            }         
+            
+            
+            
+            
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_jAllowActionPerformed
+
+    private void jDeclineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDeclineActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jDeclineActionPerformed
+
+    private void jExceptionSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExceptionSearchActionPerformed
+        // TODO add your handling code here:
+        try{
+            
+            int foundID;
+            
+            
+            
+            int idTest = Integer.parseInt(jExtensionID.getText());
+            
+            for (Extension i : extensionRequestList){
+                if(i.getResourceID() == idTest){
+                    
+                    jExtensionSearchResult.setText(i.getResourceName());
+                    
+                    extensionID = i.getResourceID();
+                    
+                }
+            }
+            
+            
+        }
+        catch(NumberFormatException e){
+            
+        }
+        
+        
+        
+    }//GEN-LAST:event_jExceptionSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1456,11 +1647,11 @@ public class Login extends javax.swing.JFrame {
     
     public void createResources(){
         
-        DVD planetEarth = new DVD("Planet Earth Boxset", 1, 500, "dvd", true);
-        Book mobyDick = new Book("Moby Dick", 2, 500, "Book", true);
-        Magazine artNews = new Magazine("ARTnews", 3, 500, "Magazine",true);
-        Book religousStudies = new Book("Religious Studies", 4, 500, "Book",true);
-        Book javaForDummies = new Book("Java For Dummies", 5, 500, "Book",true);
+        DVD planetEarth = new DVD("Planet Earth Boxset", 1, 500, "dvd", true, 3, creationArray);
+        Book mobyDick = new Book("Moby Dick", 2, 500, "Book", true, 3,creationArray);
+        Magazine artNews = new Magazine("ARTnews", 3, 500, "Magazine",true, 3,creationArray);
+        Book religousStudies = new Book("Religious Studies", 4, 500, "Book",true, 3,creationArray);
+        Book javaForDummies = new Book("Java For Dummies", 5, 500, "Book",true, 3,creationArray);
         
         
         
@@ -1480,13 +1671,18 @@ public class Login extends javax.swing.JFrame {
         int  ID;
         String resourceName;
         LocalDate returnDate;
-        
+        LocalDate remindDate;
+        int reminder;
               
         userName = currentUser.getFirstName();
         
         ID = tempResourceID;
         
         returnDate = plusDays(tempDaysBorrowed);
+        
+        reminder = tempDaysBorrowed - 7;
+                
+        remindDate = plusDays(reminder);
         
         resourceName = tempResourceName;
         
@@ -1497,7 +1693,7 @@ public class Login extends javax.swing.JFrame {
          
         System.out.println(userName + " " + tempResourceID + " " + tempDaysBorrowed);
         
-        Borrow borrow = new Borrow(userName, ID,resourceName, returnDate, tempDaysBorrowed, false, false);     
+        Borrow borrow = new Borrow(userName, ID,resourceName, returnDate, remindDate, tempDaysBorrowed, false, false);     
         
         
         borrowedList.add(borrow);
@@ -1547,12 +1743,12 @@ public class Login extends javax.swing.JFrame {
             //boolean available;                      
             
             if(i.isAvailable())         
-                resourceListString += i.getID() + ".  " + i.getResourceName() + " " + i.getTypeName() + "\n";
+                resourceListString += i.getID() + ".  " + i.getResourceName() + " " + i.getTypeName() + " " + i.getAverageRating() + "/5" + "\n";
         }
         
         jResourceList.setText(resourceListString);
         
-        jResourceList.setEditable(false);          
+                  
                 
     }
     
@@ -1566,6 +1762,17 @@ public class Login extends javax.swing.JFrame {
                                        
                 if(i.getReturnDate().isAfter(currentDate)){
                     borrowedListString += i.getResourceID() + " " + i.getResourceName() + " Date due: " + i.getReturnDate() + "\n";
+                    
+                    
+                    
+                    
+                    if(i.getReturnDate().isEqual(i.getRemindDate())){
+                    
+                    Message message = new Message("Automated message: ", currentUser.getFirstName() + " " + currentUser.getLastName() + " Your resource '" + i.getResourceName() + "' is due in ONE WEEK");
+                        
+                    messageList.add(message);
+                    }
+                    
                 }
                 else if (i.getReturnDate().isEqual(currentDate)){
                     dueLateString += i.getResourceID() + " " + i.getResourceName() + " Date due: " + i.getReturnDate() + "\n";
@@ -1594,20 +1801,60 @@ public class Login extends javax.swing.JFrame {
             
         }
         
+        
+        LoadMessages();
+        
         jBorrowedResources.setText(borrowedListString);
         jDueOverdue.setText(dueLateString);
     }
     
+    
+    public double CalculateRating(int tempRating, Resource resource){
+        
+        
+        
+        int tempInt = 0;
+        double average = 0;
+        
+        ArrayList <Integer> tempArray;
+        
+        
+        tempArray = resource.getRatingList();
+        
+       
+        
+        tempArray.add(tempRating);
+        
+        
+        
+        for(int i = 0; i < tempArray.size(); i++){
+            
+            System.out.println(i);
+            
+            tempInt += tempArray.get(i);
+            
+        }
+        
+        
+        
+        average = tempInt / tempArray.size();
+        
+        
+        
+        //resource.setAverageRating(average);
+        
+        return average;
+    }
    
     
 
     public LocalDate plusDays(int days){     
               
-        LocalDate date = LocalDate.now();
+        //LocalDate date = LocalDate.now();
         
         LocalDate returnDate;
         
-        returnDate = date.plusDays(days);
+        returnDate = currentDate.plusDays(days);
         
         
         
@@ -1622,15 +1869,19 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jAdminPanel;
     private javax.swing.JButton jAdminSend;
     private javax.swing.JButton jAdvanceTime1Day;
+    private javax.swing.JButton jAllow;
     private javax.swing.JTextField jAvailable;
     private javax.swing.JTextArea jBorrowedResources;
     private javax.swing.JPanel jClientResourcePanel;
     private javax.swing.JButton jCreateResource;
+    private javax.swing.JButton jDecline;
     private javax.swing.JTextArea jDueOverdue;
     private javax.swing.JTextField jError;
+    private javax.swing.JButton jExceptionSearch;
     private javax.swing.JTextField jExtensionID;
     private javax.swing.JTextField jExtensionName;
     private javax.swing.JTextArea jExtensionRequests;
+    private javax.swing.JTextField jExtensionSearchResult;
     private javax.swing.JTextField jIdSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1644,6 +1895,9 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1669,6 +1923,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPasswordField jPassword;
+    private javax.swing.JTextField jRating;
     private javax.swing.JButton jRent2Button;
     private javax.swing.JButton jRent6Button;
     private javax.swing.JButton jRequestExtension;
@@ -1686,7 +1941,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JButton jSearchButton;
-    private javax.swing.JButton jSearchExtension;
+    private javax.swing.JButton jSearchIDForExtension;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel jUserBooksPanel;
     private javax.swing.JTextField jUserName;
     private javax.swing.JPanel jUserPanel;

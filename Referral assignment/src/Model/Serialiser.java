@@ -35,15 +35,15 @@ public class Serialiser {
     public Serializable readObject(){
         Serializable loadedObject = null;
         try {
-         FileInputStream fileIn = new FileInputStream(fileName);
+         FileInputStream fileInput = new FileInputStream(fileName);
          
-         ObjectInputStream in = new ObjectInputStream(fileIn);
+         ObjectInputStream in = new ObjectInputStream(fileInput);
          
          loadedObject = (Serializable) in.readObject();
          
          in.close();
          
-         fileIn.close();
+         fileInput.close();
          
          System.out.println("Data loaded from: "+ fileName);
          
@@ -51,13 +51,13 @@ public class Serialiser {
             
             System.out.println("File not found");
             
-            i.printStackTrace();
+            
             
         } catch (ClassNotFoundException c) {
             
             System.out.println("Class not found");
             
-            c.printStackTrace();
+            
         }
         return loadedObject;
         
@@ -83,9 +83,7 @@ public boolean writeObject(Serializable object){
              
          
             System.out.println("Failed to load!");
-            
-            i.printStackTrace();
-            
+                                    
             return false;    
          }   
     }    

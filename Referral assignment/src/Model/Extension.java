@@ -24,6 +24,7 @@ public class Extension {
         
         requester = tempRequester;
         resourceID = tempResourceID;
+        resourceName = tempResourceName;
     }
 
     public String getRequester() {

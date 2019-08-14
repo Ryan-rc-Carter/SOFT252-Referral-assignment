@@ -7,6 +7,7 @@ package Model;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 /**
  *
  * @author Ryan
@@ -18,15 +19,25 @@ public class Resource {
     private int deweyClass;
     private String typeName;
     private boolean available;
+    private double averageRating;
+    private ArrayList<Integer> ratingList;
+    
+    
+    
      
 
-    public Resource (String tempResourceName, int tempId, int tempDeweyClass, String tempTypeName, boolean tempAvailable){
+    public Resource (String tempResourceName, int tempId, int tempDeweyClass, String tempTypeName, boolean tempAvailable, double tempRating, ArrayList<Integer> tempRatingList){
     
         resourceName = tempResourceName;
         id = tempId;
         deweyClass = tempDeweyClass;
         typeName = tempTypeName;
         available = tempAvailable;
+        averageRating = tempRating;
+        ratingList = tempRatingList;
+        
+        
+        
               
     }
 
@@ -69,6 +80,24 @@ public class Resource {
     public void setTypeName(String typeName) {
         this.typeName = typeName;
     }
+    
+    public double getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(double rating) {
+        this.averageRating = rating;
+    }
+
+    public ArrayList<Integer> getRatingList() {
+        return ratingList;
+    }
+
+    public void setRatingList(ArrayList<Integer> ratingList) {
+        this.ratingList = ratingList;
+    }
+
+    
 
     
     
