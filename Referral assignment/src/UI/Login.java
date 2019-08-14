@@ -182,7 +182,7 @@ public class Login extends javax.swing.JFrame {
         jExtensionID = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jExtensionName = new javax.swing.JTextField();
-        jSearchIDForExtension = new javax.swing.JButton();
+        jClientExtension = new javax.swing.JButton();
         jRequestExtension = new javax.swing.JButton();
         jAdminPanel = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -199,12 +199,12 @@ public class Login extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jExtensionRequests = new javax.swing.JTextArea();
-        jTextField1 = new javax.swing.JTextField();
-        jExtensionSearchResult = new javax.swing.JTextField();
-        jAllow = new javax.swing.JButton();
-        jDecline = new javax.swing.JButton();
-        jExceptionSearch = new javax.swing.JButton();
+        jAdminExtensionRequests = new javax.swing.JTextArea();
+        jAdminExtensionSearch = new javax.swing.JTextField();
+        jAdminExtensionSearchResult = new javax.swing.JTextField();
+        jAdminAllow = new javax.swing.JButton();
+        jAdminDecline = new javax.swing.JButton();
+        jAdminExtensionSearchButton = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
@@ -299,7 +299,7 @@ public class Login extends javax.swing.JFrame {
         jUserPanelLayout.setHorizontalGroup(
             jUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jUserPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(129, Short.MAX_VALUE)
                 .addComponent(jWelcome)
                 .addGap(36, 36, 36)
                 .addComponent(jLogoutButton)
@@ -319,19 +319,19 @@ public class Login extends javax.swing.JFrame {
         jMainUserPanel.setLayout(jMainUserPanelLayout);
         jMainUserPanelLayout.setHorizontalGroup(
             jMainUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jMainUserPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(27, 27, 27))
             .addGroup(jMainUserPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jMainUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jMainUserPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLoginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jMainUserPanelLayout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(jUserPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLoginPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(69, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jMainUserPanelLayout.createSequentialGroup()
+                        .addGroup(jMainUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jUserPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jMainUserPanelLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel3)))
+                        .addGap(27, 27, 27))))
         );
         jMainUserPanelLayout.setVerticalGroup(
             jMainUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -717,10 +717,10 @@ public class Login extends javax.swing.JFrame {
 
         jExtensionName.setEditable(false);
 
-        jSearchIDForExtension.setText("Search");
-        jSearchIDForExtension.addActionListener(new java.awt.event.ActionListener() {
+        jClientExtension.setText("Search");
+        jClientExtension.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jSearchIDForExtensionActionPerformed(evt);
+                jClientExtensionActionPerformed(evt);
             }
         });
 
@@ -741,7 +741,7 @@ public class Login extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(jSearchIDForExtension)
+                                .addComponent(jClientExtension)
                                 .addGap(77, 77, 77)
                                 .addComponent(jRequestExtension))
                             .addGroup(jPanel7Layout.createSequentialGroup()
@@ -767,7 +767,7 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jExtensionName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jSearchIDForExtension)
+                    .addComponent(jClientExtension)
                     .addComponent(jRequestExtension))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
@@ -883,31 +883,31 @@ public class Login extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel18.setText("Extension requests");
 
-        jExtensionRequests.setEditable(false);
-        jExtensionRequests.setColumns(20);
-        jExtensionRequests.setRows(5);
-        jScrollPane6.setViewportView(jExtensionRequests);
+        jAdminExtensionRequests.setEditable(false);
+        jAdminExtensionRequests.setColumns(20);
+        jAdminExtensionRequests.setRows(5);
+        jScrollPane6.setViewportView(jAdminExtensionRequests);
 
-        jExtensionSearchResult.setEditable(false);
+        jAdminExtensionSearchResult.setEditable(false);
 
-        jAllow.setText("Allow Extension");
-        jAllow.addActionListener(new java.awt.event.ActionListener() {
+        jAdminAllow.setText("Allow Extension");
+        jAdminAllow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jAllowActionPerformed(evt);
+                jAdminAllowActionPerformed(evt);
             }
         });
 
-        jDecline.setText("Decline Extension");
-        jDecline.addActionListener(new java.awt.event.ActionListener() {
+        jAdminDecline.setText("Decline Extension");
+        jAdminDecline.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jDeclineActionPerformed(evt);
+                jAdminDeclineActionPerformed(evt);
             }
         });
 
-        jExceptionSearch.setText("Search");
-        jExceptionSearch.addActionListener(new java.awt.event.ActionListener() {
+        jAdminExtensionSearchButton.setText("Search");
+        jAdminExtensionSearchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jExceptionSearchActionPerformed(evt);
+                jAdminExtensionSearchButtonActionPerformed(evt);
             }
         });
 
@@ -933,13 +933,13 @@ public class Login extends javax.swing.JFrame {
                                 .addGap(30, 30, 30)
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel8Layout.createSequentialGroup()
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jAdminExtensionSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jExtensionSearchResult, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jAdminExtensionSearchResult, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jExceptionSearch, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jDecline, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                                        .addComponent(jAllow, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                        .addComponent(jAdminExtensionSearchButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jAdminDecline, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                                        .addComponent(jAdminAllow, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -952,15 +952,15 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jExtensionSearchResult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jAdminExtensionSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jAdminExtensionSearchResult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jExceptionSearch)
+                .addComponent(jAdminExtensionSearchButton)
                 .addGap(12, 12, 12)
-                .addComponent(jAllow)
+                .addComponent(jAdminAllow)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jDecline)
+                .addComponent(jAdminDecline)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1386,6 +1386,8 @@ public class Login extends javax.swing.JFrame {
                     jReturnSearch.setText("");
                     jReturnSearchDisplay.setText("");
                     
+                    jRating.setText("");
+                    
 
                     LoadResources();
                     LoadBorrowed();
@@ -1482,9 +1484,12 @@ public class Login extends javax.swing.JFrame {
         
         currentDate = currentDate.plusDays(1);
         
+        System.out.println(currentDate);
+        
         LoadResources();
         LoadMessages();
         LoadBorrowed();
+        
         
     }//GEN-LAST:event_jAdvanceTime1DayActionPerformed
 
@@ -1507,7 +1512,7 @@ public class Login extends javax.swing.JFrame {
                
     }//GEN-LAST:event_jRequestExtensionActionPerformed
 
-    private void jSearchIDForExtensionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSearchIDForExtensionActionPerformed
+    private void jClientExtensionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jClientExtensionActionPerformed
         // TODO add your handling code here:
         
         try{
@@ -1521,6 +1526,9 @@ public class Login extends javax.swing.JFrame {
             for (Borrow i : borrowedList){
                 if(i.getResourceID() == idTest){
                     
+                    
+                    
+                    
                     jExtensionName.setText(i.getResourceName());
                     
                     borrowID = i;
@@ -1531,55 +1539,106 @@ public class Login extends javax.swing.JFrame {
             
             
             
-            
         }
         catch(NumberFormatException e){
             
         }
         
-    }//GEN-LAST:event_jSearchIDForExtensionActionPerformed
+    }//GEN-LAST:event_jClientExtensionActionPerformed
 
-    private void jAllowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAllowActionPerformed
+    private void jAdminAllowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAdminAllowActionPerformed
         // TODO add your handling code here:
         
         LocalDate tempReturnDate;
         LocalDate tempRemindDate;
+        
+        String extendedResourceName = "";
+        
+        int tempIndex = 0;
+        
         
         
         for(Borrow i : borrowedList){
             if(i.getResourceID() == extensionID){
                 i.setExtensionRequested(true);
                 
-                tempReturnDate = i.getReturnDate();
-                tempRemindDate = i.getRemindDate();
+                System.out.println("Current date is: " + currentDate + " New return date is: " + i.getReturnDate() + " New Remind date is:  " + i.getRemindDate() +"\n");
                
-                tempReturnDate.plusDays(7);
-                tempRemindDate.plusDays(7);
+                tempReturnDate = i.getReturnDate();
+                //tempRemindDate = i.getRemindDate();
+               
+               
+                
+                tempReturnDate = tempReturnDate.plusDays(7);
+                tempRemindDate = i.getReturnDate();
                 
                 i.setReturnDate(tempReturnDate);
                 i.setRemindDate(tempRemindDate);
+                             
+                System.out.println("Current date is: " + currentDate + " New return date is: " + tempReturnDate + " New Remind date is:  " + tempRemindDate);
+                
+                jAdminExtensionSearch.setText("");
+                jAdminExtensionSearchResult.setText("");
+                
+                
+                extendedResourceName = i.getResourceName();
                 
                 
                 
+                LoadExtensionRequests();
                 
                 
-            }         
-            
-            
-            
-            
+                
+            }      
+        }
+        
+        for(Extension j : extensionRequestList){
+            if(j.getResourceName().equals(extendedResourceName)){
+                tempIndex = extensionRequestList.indexOf(j);
+                
+                
+            }
+        }
+        
+        extensionRequestList.remove(tempIndex);
+        
+        
+        
+        LoadExtensionRequests();
+        
+        
+       
+    }//GEN-LAST:event_jAdminAllowActionPerformed
+
+    private void jAdminDeclineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAdminDeclineActionPerformed
+        // TODO add your handling code here:
+        
+        String extendedResourceName = "";
+        int tempIndex = 0;
+        
+        for(Borrow i : borrowedList){
+            if(i.getResourceID() == extensionID){
+                i.setExtensionRequested(true);
+                
+                extendedResourceName = i.getResourceName();
+                
+            }
+        }    
+        
+        for(Extension j : extensionRequestList){
+            if(j.getResourceName().equals(extendedResourceName))
+            {
+                tempIndex = extensionRequestList.indexOf(j);
+            }
         }
         
         
-        
-        
-    }//GEN-LAST:event_jAllowActionPerformed
+        jAdminExtensionSearch.setText("");
+        jAdminExtensionSearchResult.setText("");
+           
+    }//GEN-LAST:event_jAdminDeclineActionPerformed
 
-    private void jDeclineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDeclineActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jDeclineActionPerformed
-
-    private void jExceptionSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExceptionSearchActionPerformed
+    private void jAdminExtensionSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAdminExtensionSearchButtonActionPerformed
         // TODO add your handling code here:
         try{
             
@@ -1587,12 +1646,17 @@ public class Login extends javax.swing.JFrame {
             
             
             
-            int idTest = Integer.parseInt(jExtensionID.getText());
+            
+            int idTest = Integer.parseInt(jAdminExtensionSearch.getText());
             
             for (Extension i : extensionRequestList){
                 if(i.getResourceID() == idTest){
                     
-                    jExtensionSearchResult.setText(i.getResourceName());
+                    System.out.println("Found");
+                    System.out.println(i.getResourceName());
+                    
+                    
+                    jAdminExtensionSearchResult.setText(i.getResourceName());
                     
                     extensionID = i.getResourceID();
                     
@@ -1603,11 +1667,13 @@ public class Login extends javax.swing.JFrame {
         }
         catch(NumberFormatException e){
             
+            System.out.println(e);
+            
         }
         
         
         
-    }//GEN-LAST:event_jExceptionSearchActionPerformed
+    }//GEN-LAST:event_jAdminExtensionSearchButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1665,6 +1731,7 @@ public class Login extends javax.swing.JFrame {
         
     }
     
+    //Adds the selected resource's id and name to a new list which is dependant on the user
     public void Borrowing(int tempResourceID, String tempResourceName, int tempDaysBorrowed){
     
         String userName;
@@ -1720,10 +1787,10 @@ public class Login extends javax.swing.JFrame {
         
         for (Extension i : extensionRequestList){
             
-           extensionList += i.getRequester() + " " + i.getResourceID() + " " + i.getResourceName();
+           extensionList += i.getRequester() + " " + i.getResourceID() + " " + i.getResourceName() + "\n";
         }
         
-        jExtensionRequests.setText(extensionList);
+        jAdminExtensionRequests.setText(extensionList);
         
     }
      
@@ -1766,12 +1833,12 @@ public class Login extends javax.swing.JFrame {
                     
                     
                     
-                    if(i.getReturnDate().isEqual(i.getRemindDate())){
-                    
-                    Message message = new Message("Automated message: ", currentUser.getFirstName() + " " + currentUser.getLastName() + " Your resource '" + i.getResourceName() + "' is due in ONE WEEK");
+                    //if(i.getReturnDate().isEqual(i.getRemindDate())){
+                    //
+                    //Message message = new Message("Automated message: ", currentUser.getFirstName() + " " + currentUser.getLastName() + " Your resource '" + i.getResourceName() + "' is due in ONE WEEK");
                         
-                    messageList.add(message);
-                    }
+                    //messageList.add(message);
+                    //}
                     
                 }
                 else if (i.getReturnDate().isEqual(currentDate)){
@@ -1864,24 +1931,26 @@ public class Login extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jAdminAllow;
+    private javax.swing.JButton jAdminDecline;
+    private javax.swing.JTextArea jAdminExtensionRequests;
+    private javax.swing.JTextField jAdminExtensionSearch;
+    private javax.swing.JButton jAdminExtensionSearchButton;
+    private javax.swing.JTextField jAdminExtensionSearchResult;
     private javax.swing.JTextArea jAdminMessage;
     private javax.swing.JPanel jAdminMessagePanel;
     private javax.swing.JPanel jAdminPanel;
     private javax.swing.JButton jAdminSend;
     private javax.swing.JButton jAdvanceTime1Day;
-    private javax.swing.JButton jAllow;
     private javax.swing.JTextField jAvailable;
     private javax.swing.JTextArea jBorrowedResources;
+    private javax.swing.JButton jClientExtension;
     private javax.swing.JPanel jClientResourcePanel;
     private javax.swing.JButton jCreateResource;
-    private javax.swing.JButton jDecline;
     private javax.swing.JTextArea jDueOverdue;
     private javax.swing.JTextField jError;
-    private javax.swing.JButton jExceptionSearch;
     private javax.swing.JTextField jExtensionID;
     private javax.swing.JTextField jExtensionName;
-    private javax.swing.JTextArea jExtensionRequests;
-    private javax.swing.JTextField jExtensionSearchResult;
     private javax.swing.JTextField jIdSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1941,8 +2010,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JButton jSearchButton;
-    private javax.swing.JButton jSearchIDForExtension;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel jUserBooksPanel;
     private javax.swing.JTextField jUserName;
     private javax.swing.JPanel jUserPanel;
