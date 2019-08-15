@@ -32,20 +32,41 @@ public class Login extends javax.swing.JFrame {
      */
     //private ClientUI clientUI;
     
+    
+    /*
+    Declaring ArrayLists for later usage
+    
+    Resource list - Overall list of resources
+    Borrowed List - User dependant list of borrowed resources
+    LateResources - User dependant lsit of resources that are due or overdue for return
+    MessageList - Messages that are sent automatically or by administrator
+    
+    */
+    
     private ArrayList<Resource> resourceList;    
     
     public ArrayList<Borrow> borrowedList;
     
     public ArrayList<Borrow> lateResources;
     
-    public ArrayList<Message> messageList;
-    
-    public ArrayList <Borrow> dueLateResources;
-    
+    public ArrayList<Message> messageList;   
+        
     public ArrayList <Extension> extensionRequestList;
     
     public ArrayList <Integer> creationArray;
     
+    
+    /**
+     Declaring search result variables to be used when a Client or Administrator 
+     searches for a specific
+     * 
+     * message - a message that will be added to messageList
+     * messageString - the string of all messages that is printed to the message panel 
+     * currentUser - current user that is logged in
+     * FoundID, BorrowID, ExtensionID and Returning ID - Used when searching for a specific resource
+     * index - used when finding the index of a resource
+     * 
+     */
     
     
     public Message message;
@@ -79,7 +100,7 @@ public class Login extends javax.swing.JFrame {
         
         messageList = new ArrayList();
         
-        dueLateResources = new ArrayList();
+        
         
         extensionRequestList = new ArrayList();
         
@@ -1710,14 +1731,34 @@ public class Login extends javax.swing.JFrame {
         });
     }
     
-    
+    /**
+     * Create the initial resources that will be displayed when first
+     * opening the application
+     */
+       
     public void createResources(){
         
-        DVD planetEarth = new DVD("Planet Earth Boxset", 1, 500, "dvd", true, 3, creationArray);
-        Book mobyDick = new Book("Moby Dick", 2, 500, "Book", true, 3,creationArray);
-        Magazine artNews = new Magazine("ARTnews", 3, 500, "Magazine",true, 3,creationArray);
-        Book religousStudies = new Book("Religious Studies", 4, 500, "Book",true, 3,creationArray);
-        Book javaForDummies = new Book("Java For Dummies", 5, 500, "Book",true, 3,creationArray);
+        
+        DVD planetEarth = new DVD("Planet Earth Boxset", 1, 500, "DVD", true, 3, creationArray);
+        Book mobyDick = new Book("Moby Dick", 2, 800, "Book", true, 3,creationArray);
+        Magazine artNews = new Magazine("ARTnews", 3, 700, "Magazine",true, 3,creationArray);
+        Book religousStudies = new Book("Religious Studies", 4, 200, "Book",true, 3,creationArray);
+        Book javaForDummies = new Book("Java For Dummies", 5, 000, "Book",true, 3,creationArray);
+        DVD codebreaker = new DVD("Codebreaker", 6, 000, "DVD", true, 3, creationArray);
+        Book chernobyl = new Book("Chernobyl", 7, 900, "Book", true, 3, creationArray);
+        Magazine wired = new Magazine("Wired", 8, 600, "Magazine", true, 3,creationArray);
+        DVD theory = new DVD("The Theory of Everything", 9, 500, "DVD",true, 3,creationArray);
+        DVD jurassicPark = new DVD("Jurassic Park", 10, 700, "DVD",true, 3,creationArray);
+        Magazine radioTimes = new Magazine("Radio Times", 11, 500, "Magazine",true, 3,creationArray);
+        Magazine wildlife = new Magazine("Wildlife", 12, 500, "Magazine", true, 3, creationArray);
+        DVD fury = new DVD("Fury", 13, 800, "dvd", true, 3,creationArray);
+        Book chimpParadox = new Book("The Chimp Paradox", 14, 100, "Book",true, 3,creationArray);
+        DVD painting = new DVD("The Joy of Painting", 15, 700, "DVD",true, 3,creationArray);
+        Magazine scienceFocus = new Magazine("Science Focus", 16, 500, "Magazine",true, 3,creationArray);
+        Book spanishDictionary = new Book("Spanish Dictionary", 17, 400, "Book", true, 3, creationArray);
+        Magazine howItWorks = new Magazine("How it works", 18, 600, "Magazine", true, 3, creationArray);
+        Book ofMiceAndMen  = new Book("Of Mice and Men", 19, 800, "Book", true, 3,creationArray);
+        DVD avengers  = new DVD("Avengers Endgame", 20, 700, "DVD",true, 3,creationArray);
         
         
         
@@ -1727,7 +1768,22 @@ public class Login extends javax.swing.JFrame {
         resourceList.add(mobyDick);
         resourceList.add(artNews);
         resourceList.add(religousStudies);
-        resourceList.add(javaForDummies);     
+        resourceList.add(javaForDummies); 
+        resourceList.add(codebreaker);
+        resourceList.add(chernobyl);
+        resourceList.add(wired);
+        resourceList.add(theory);
+        resourceList.add(jurassicPark);
+        resourceList.add(radioTimes);
+        resourceList.add(wildlife);
+        resourceList.add(fury);
+        resourceList.add(chimpParadox);
+        resourceList.add(painting); 
+        resourceList.add(scienceFocus);
+        resourceList.add(spanishDictionary);
+        resourceList.add(howItWorks);
+        resourceList.add(ofMiceAndMen);
+        resourceList.add(avengers); 
         
     }
     
