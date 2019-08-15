@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="UML Diagrams">
+  <ClassDiagramComponents>
+    <Class name="Resource" package="" visibility="public" xPosition="384.0" yPosition="7.0">
+      <Fields>
+        <Field name="resourceName" type="String" visibility="private"/>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="deweyClass" type="int" visibility="private"/>
+        <Field name="typeName" type="String" visibility="private"/>
+        <Field name="available" type="boolean" visibility="private"/>
+        <Field name="averageRating" type="Double" visibility="private"/>
+        <Field name="ratingList" type="ArrayList&lt;Integer&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="isAvailable" returnType="boolean" visibility="public"/>
+        <Method name="setAvailable" returnType="void" visibility="public"/>
+        <Method name="getResourceName" returnType="String" visibility="public"/>
+        <Method name="setResourceName" returnType="void" visibility="public"/>
+        <Method name="getID" returnType="int" visibility="public"/>
+        <Method name="setID" returnType="void" visibility="public"/>
+        <Method name="getDeweyClass" returnType="int" visibility="public"/>
+        <Method name="setDeweyClass" returnType="void" visibility="public"/>
+        <Method name="getTypeName" returnType="String" visibility="public"/>
+        <Method name="setTypeName" returnType="void" visibility="public"/>
+        <Method name="getAverageRating" returnType="double" visibility="public"/>
+        <Method name="setAverageRating" returnType="void" visibility="public"/>
+        <Method name="getRatingList" returnType="ArrayList&lt;Integer&gt;" visibility="public"/>
+        <Method name="setRatingList" returnType="void" visibility="public"/>
+        <Method name="untitledMethod" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Interface name="Book" package="" visibility="public" xPosition="180.0" yPosition="574.0">
+      <Methods/>
+    </Interface>
+    <Interface name="DVD" package="" visibility="public" xPosition="431.0" yPosition="574.0">
+      <Methods/>
+    </Interface>
+    <Interface name="Magazine" package="" visibility="public" xPosition="686.0" yPosition="563.0">
+      <Methods/>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Resource" target="DVD"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Resource" target="Magazine"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="Resource" target="Book"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

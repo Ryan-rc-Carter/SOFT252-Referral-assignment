@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="ExtensionUML">
+  <ClassDiagramComponents>
+    <Class name="Extension" package="" visibility="public" xPosition="364.0" yPosition="195.0">
+      <Fields>
+        <Field name="requester" type="String" visibility="private"/>
+        <Field name="resourceID" type="int" visibility="private"/>
+        <Field name="resourceName" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getRequester" returnType="String" visibility="public"/>
+        <Method name="getResourceID" returnType="int" visibility="public"/>
+        <Method name="getResourceName" returnType="String" visibility="public"/>
+        <Method name="setRequester" returnType="void" visibility="public"/>
+        <Method name="setResourceID" returnType="void" visibility="public"/>
+        <Method name="setResourceName" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Rating" package="" visibility="public" xPosition="94.0" yPosition="195.0">
+      <Fields>
+        <Field name="userRating" type="int" visibility="private"/>
+        <Field name="averageRating" type="double" visibility="private"/>
+        <Field name="ratingList" type="ArrayList&lt;Integer&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getUserRating" returnType="int" visibility="public"/>
+        <Method name="getAverageRating" returnType="double" visibility="public"/>
+        <Method name="setUserRating" returnType="void" visibility="public"/>
+        <Method name="SetAverageRating" returnType="void" visibility="public"/>
+        <Method name="untitledMethod" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Message" package="" visibility="public" xPosition="630.0" yPosition="195.0">
+      <Fields>
+        <Field name="senderID" type="String" visibility="private"/>
+        <Field name="messageContents" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getSenderID" returnType="String" visibility="public"/>
+        <Method name="getMessageContents" returnType="String" visibility="public"/>
+        <Method name="setSenderID" returnType="void" visibility="public"/>
+        <Method name="setMessageContents" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations/>
+</ClassDiagram>

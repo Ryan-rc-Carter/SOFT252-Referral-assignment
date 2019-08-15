@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="UserUML">
+  <ClassDiagramComponents>
+    <Class name="User" package="" visibility="public" xPosition="339.0" yPosition="112.0">
+      <Fields>
+        <Field name="username" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="isAdmin" type="boolean" visibility="private"/>
+        <Field name="firstName" type="String" visibility="private"/>
+        <Field name="lastName" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getUsername" returnType="String" visibility="public"/>
+        <Method name="setUsername" returnType="void" visibility="public"/>
+        <Method name="getPassword" returnType="String" visibility="public"/>
+        <Method name="setPassword" returnType="void" visibility="public"/>
+        <Method name="getIsAdmin" returnType="boolean" visibility="public"/>
+        <Method name="setIsAdmin" returnType="void" visibility="public"/>
+        <Method name="getFirstName" returnType="String" visibility="public"/>
+        <Method name="setFirstName" returnType="void" visibility="public"/>
+        <Method name="getLastName" returnType="String" visibility="public"/>
+        <Method name="setLastName" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Interface name="Client" package="" visibility="public" xPosition="183.0" yPosition="565.0">
+      <Methods/>
+    </Interface>
+    <Interface name="Admin" package="" visibility="public" xPosition="497.0" yPosition="565.0">
+      <Methods/>
+    </Interface>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="User" target="Client"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="User" target="Admin"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
